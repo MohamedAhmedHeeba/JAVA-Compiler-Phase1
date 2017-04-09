@@ -1,0 +1,34 @@
+/*loop for all inputs on set alpha*/
+        for (std::set<char>::iterator it=alpha.begin(); it!=alpha.end(); ++it)
+        {
+            /*get destination from source temp on input it */
+            set<State*> destination = move(temp->get_content(),*it);
+
+
+            /*chech if the dest is not in DFA*/
+            bool flag = false;
+            D_state* test ;
+            for (std::set<D_state*>::iterator itr =DFA.begin(); itr !=DFA.end(); ++itr)
+            {
+                D_state* d = *itr;
+                if(d->get_content() == destination)
+                {
+                    flag = true;
+                    test = d;
+                    break;
+
+                }
+            }
+
+            if (!flag )
+            {
+                D_state *dest = new D_state(destination);
+                DFA.insert(dest);
+                unmarked.push(dest);
+                temp->set_next(*it,dest);
+            }
+            else
+            {
+                temp->set_next(*it,test);
+            }
+        }

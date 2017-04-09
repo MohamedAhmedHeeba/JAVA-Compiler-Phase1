@@ -1,0 +1,6 @@
+semo:abb
+heeba:(a|b)*abb
+gamal:(a|b)*aa
+gamalii:ab
+momo:(a|b)*ba
+
