@@ -18,11 +18,11 @@ void print_DFA(D_state* startingNode)
     set < D_state* > vis;
     //counter++;
     //vis.insert(startingNode);
-    if (startingNode -> is_accept())
+    /*if (startingNode -> is_accept())
     {
         cout << "NOde << prio = " << startingNode -> get_priority() << endl;
         cout << "NOde << Name = " << startingNode -> get_name() << endl;
-    }
+    }*/
     while(!current.empty())
     {
         D_state* x = current.top();

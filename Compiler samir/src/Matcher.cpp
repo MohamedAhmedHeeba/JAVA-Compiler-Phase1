@@ -110,7 +110,11 @@ bool Matcher::fun(string &str, D_state* start)
         /*get the type matched from temp name*/
         string type = temp->get_name();
         /*write pattern in the output file*/
-        this->out = this->out + type + '\n';
+        if(type == "Keyword" || type == "Punctuation"){
+            this->out = this->out + str + '\n';
+        }else{
+            this->out = this->out + type + '\n';
+        }
         if(type == "id")                                 ///**MAY BE ERROR*/
         {
             /*add to sym table*/
@@ -121,7 +125,11 @@ bool Matcher::fun(string &str, D_state* start)
         /*get the type matched from temp name*/
         string type = last_accept->get_name();
         /*write pattern in the output file*/
-        this->out = this->out + type + '\n';
+        if(type == "Keyword" || type == "Punctuation"){
+            this->out = this->out + str.substr(0,pos) + '\n';
+        }else{
+            this->out = this->out + type + '\n';
+        }
         if(type == "id"){
             /*add to sym table*/
             this->symbol_table.push_back(str);
