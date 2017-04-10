@@ -1,3 +1,21 @@
+ERROR in symbol  ~
+ERROR in symbol  #
+ERROR in symbol  ?
+id
+ERROR in symbol  #
+ERROR in symbol  !
+ERROR in symbol  @
+id
+assign
+ERROR in symbol  ?
+num
+ERROR in symbol  ?
+relop
+;
+ERROR in symbol  !
+id
+id
+ERROR REJECTED  !
 int
 id
 (

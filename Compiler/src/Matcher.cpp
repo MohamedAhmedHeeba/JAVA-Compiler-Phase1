@@ -70,6 +70,20 @@ bool Matcher::run(string str, D_state* start)
     }
     ///loop for each char in str (token)
     for(int i = 0 ; i < str.size() ; i++){
+        if(str[i] == '!'){
+            if(i+1 < str.size()){
+                if(str[i+1] != '='){
+                    error = i;
+                    cout << "2222222222222222222222222222222222\n";
+                    break;
+                }
+            }else if(i == str.size()-1){
+                //error = i;
+                cout << "heeeeeeebaaaaaaaaaaaaaaaaaaaaaaaaaaa\n";
+                //break;
+            }
+
+        }
         /// get next state for input str[i]
         temp =temp->get_next(str[i]);
         /// if go to NO state --> error
@@ -108,11 +122,19 @@ bool Matcher::run(string str, D_state* start)
             string reminder = str.substr(pos+1);
             return run(reminder, start);
         }else if(last == nullptr && ( temp->get_id() == -1 || temp->get_name() == "Phi" ) && error > -1 ){  /// trem with error
+            //if(str[error] == '!'){this->out = this->out + "ERROR in symbol  " +'!'+ '\n';}
             this->out = this->out + "ERROR in symbol  " + str[error] + '\n';
             string reminder = str.substr(error+1);
             return run(reminder, start);
-        }else{      /// mya be not reached
-            this->out = this->out + "ERROR REJECTED  " + str + '\n';
+        }else{
+            if(str[error] =='!'){
+                this->out = this->out + "ERROR in symbol  " + str[error] + '\n';
+                string reminder = str.substr(error+1);
+                return run(reminder, start);
+            }else{                                           /// mya be not reached
+                this->out = this->out + "ERROR in symbol  " + str + '\n';
+            }
+
         }
     }
 }

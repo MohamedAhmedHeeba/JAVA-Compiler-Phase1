@@ -35,17 +35,21 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/D_state.h" />
+		<Unit filename="include/Matcher.h" />
 		<Unit filename="include/Min_DFA.h" />
 		<Unit filename="include/NFA.h" />
 		<Unit filename="include/NFA_to_DFA.h" />
 		<Unit filename="include/Parser.h" />
+		<Unit filename="include/Reader.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/D_state.cpp" />
+		<Unit filename="src/Matcher.cpp" />
 		<Unit filename="src/Min_DFA.cpp" />
 		<Unit filename="src/NFA.cpp" />
 		<Unit filename="src/NFA_to_DFA.cpp" />
 		<Unit filename="src/Parser.cpp" />
+		<Unit filename="src/Reader.cpp" />
 		<Unit filename="src/State.cpp" />
 		<Extensions>
 			<code_completion />
