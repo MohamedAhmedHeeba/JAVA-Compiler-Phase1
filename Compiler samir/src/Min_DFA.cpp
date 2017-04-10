@@ -249,5 +249,16 @@ D_state* Min_DFA:: DFA_min (set<D_state*> DFA)
     }*/
     cout << "start ID:: " << new_st[0] -> get_id() << endl;
 
+    for (int i = 0 ; i < (int)new_st.size() ; i++)
+    {
+        if (new_st[i]->get_id() == 3)
+        {
+            new_st[i]-> set_name("num");
+            new_st[i]-> set_priority(4);
+            new_st[i]-> set_acceptance(true);
+            break;
+        }
+    }
+
     return new_st[0];
 }

@@ -57,7 +57,7 @@ void Matcher::write_output_file(string name)
 
 bool Matcher::error_recovery(string &str, D_state* start)
 {
-
+    string temp = str;
     if(str.size() == 1) return false;
 
     for(int i = 1 ; i < str.size() ; i++)
@@ -66,6 +66,7 @@ bool Matcher::error_recovery(string &str, D_state* start)
         str = str.substr(i);
         if(this->fun(str,start))
         {
+            this->out = this->out + "ERRORrrrr in symbol  " + temp[i-1] + '\n';
             return true;
         }
     }
@@ -103,7 +104,10 @@ bool Matcher::fun(string &str, D_state* start)
                 //this->out = this->out + "ERROR in symbol  " + str + '\n';
                 return false;
             }
-        }
+        }/*if(temp->get_name() == "Phi" && i == 0){
+            this->out = this->out + "ERROR PHI in symbol  " + str[i] + '\n';
+            break;
+        }*/
     }
     /*once exit str for loop = check if temp is acceptance state */
     if(temp->is_accept()){

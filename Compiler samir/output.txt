@@ -1,23 +1,23 @@
-int
-id
-,
-id
-,
-id
-,
-id
-;
-while
-(
 id
 relop
-num
-)
-{
+ERRORrrrr in symbol  !
+id
+id
+relop
+id
+ERRORrrrr in symbol  !
+id
+relop
+ERRORrrrr in symbol  !
+ERRORrrrr in symbol  !
+id
 id
 assign
-id
-addop
 num
-;
-}
+id
+assign
+num
+id
+id
+assign
+num

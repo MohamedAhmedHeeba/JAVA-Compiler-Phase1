@@ -1,5 +1,6 @@
-int sum , count , pass ,
-mnt; while (pass != 10)
-{
-pass = pass + 1 ;
-}
+heeba !>= ahmed
+heeba!>=ahmed
+heeba !!>= ahmed
+pass = 100.5
+pass = 100.5E
+pass = 100.5E10
