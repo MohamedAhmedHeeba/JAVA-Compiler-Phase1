@@ -1,23 +1,59 @@
 id
-relop
-ERRORrrrr in symbol  !
-id
-id
+ERROR11 in symbol  ~
 relop
 id
-ERRORrrrr in symbol  !
+;
 id
-relop
-ERRORrrrr in symbol  !
-ERRORrrrr in symbol  !
-id
+assign
+num
+;
 id
 assign
 num
 id
-assign
-num
-id
+;
 id
 assign
 num
+;
+id
+ERROR11 in symbol  #
+ERROR11 in symbol  @
+ERROR11 in symbol  ~
+id
+;
+id
+assign
+id
+;
+id
+ERROR11 in symbol  ?
+id
+;
+id
+ERROR11 in symbol  ~
+id
+;
+id
+ERROR11 in symbol  ?
+assign
+;
+id
+ERROR11 in symbol  ~
+ERROR11 in symbol  #
+;
+ERROR11 in symbol  ?
+id
+;
+ERROR11 in symbol  ~
+id
+;
+ERROR11 in symbol  ~
+ERROR11 in symbol  #
+id
+;
+ERROR11 in symbol  ~
+assign
+id
+addop
+;

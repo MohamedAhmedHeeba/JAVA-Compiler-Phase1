@@ -36,9 +36,7 @@ class Matcher
 
         void write_output_file(string name);
 
-        bool error_recovery(string &str, D_state* start);
-
-        bool fun(string &str, D_state* start);
+        bool run(string str, D_state* start);
 
 };
 

@@ -26,7 +26,7 @@ void Matcher::match(vector<string> token,D_state* start)
     /*for all tokens try to match them*/
     for(int i = 0 ; i < token.size() ; i++)
     {
-        this->fun(token[i], start);
+        this->run(token[i], start);
     }
     /*write in the output file*/
     write_output_file(this->output_file_name);
@@ -55,99 +55,64 @@ void Matcher::write_output_file(string name)
     }
 }
 
-bool Matcher::error_recovery(string &str, D_state* start)
+bool Matcher::run(string str, D_state* start)
 {
-    string temp = str;
-    if(str.size() == 1) return false;
-
-    for(int i = 1 ; i < str.size() ; i++)
-    {
-        //string str = str.substr (i);
-        str = str.substr(i);
-        if(this->fun(str,start))
-        {
-            this->out = this->out + "ERRORrrrr in symbol  " + temp[i-1] + '\n';
-            return true;
-        }
-    }
-    return false;
-}
-
-
-
-
-
-bool Matcher::fun(string &str, D_state* start)
-{
-    int pos = 0;
-    /**try to match string str*/
-    /*get the start state*/
-    //set<D_state*>::iterator start = DFA.begin();
-    /*temp use as iterator*/
+    /// pos postion of last acceptance state
+    /// error postion of first error
+    int pos = 0, error = -1;
+    /// temp use as iterator
     D_state * temp = start;
-    D_state * last_accept = nullptr;
-    for(std::string::size_type i = 0; i < str.size(); ++i)
-    {
-        if(temp->is_accept()){
-            last_accept = temp;
+    /// last to save the last acceptance state
+    D_state * last = nullptr;
+    if(temp->is_accept()){
+        last = temp;
+        pos = 0;
+    }
+    ///loop for each char in str (token)
+    for(int i = 0 ; i < str.size() ; i++){
+        /// get next state for input str[i]
+        temp =temp->get_next(str[i]);
+        /// if go to NO state --> error
+        if(temp->get_name() == "Phi" || temp->get_id() == -1){
+            error = i;
+            break;
+        }else if(temp->is_accept()){            /// update the last acceptance
+            last = temp;
             pos = i;
         }
-        /*follow the sequance of str chars*/
-        temp = temp->get_next(str[i]);                   ///**MAY BE ERROR*/
-        if(temp->get_id() == -1){
-            /*generate error to output file*/
-            this->out = this->out + "ERROR11 in symbol  " + str[i] + '\n';
-            if(this->error_recovery(str,start)){
-                return true;
-            }else{
-                 /*generate error to output file*/
-                //this->out = this->out + "ERROR in symbol  " + str + '\n';
-                return false;
-            }
-        }/*if(temp->get_name() == "Phi" && i == 0){
-            this->out = this->out + "ERROR PHI in symbol  " + str[i] + '\n';
-            break;
-        }*/
     }
-    /*once exit str for loop = check if temp is acceptance state */
-    if(temp->is_accept()){
-        /*get the type matched from temp name*/
+    if(temp->is_accept() && temp == last){        /// all taken is accept
         string type = temp->get_name();
-        /*write pattern in the output file*/
         if(type == "Keyword" || type == "Punctuation"){
             this->out = this->out + str + '\n';
         }else{
             this->out = this->out + type + '\n';
         }
-        if(type == "id")                                 ///**MAY BE ERROR*/
+        if(type == "id")
         {
-            /*add to sym table*/
             this->symbol_table.push_back(str);
         }
         return true;
-    }else if(last_accept != nullptr && last_accept->is_accept()){
-        /*get the type matched from temp name*/
-        string type = last_accept->get_name();
-        /*write pattern in the output file*/
-        if(type == "Keyword" || type == "Punctuation"){
-            this->out = this->out + str.substr(0,pos) + '\n';
-        }else{
-            this->out = this->out + type + '\n';
-        }
-        if(type == "id"){
-            /*add to sym table*/
-            this->symbol_table.push_back(str);
-        }
-        /*seperate str and call back fun again with the reminder*/
-        string reminder = str.substr (pos);
-        return this->fun(reminder, start);
-    }else{
-        if(this->error_recovery(str,start)){      /*deleted from start done :D and write good in file*/
-        }else{
-            /*generate error to output file*/
-            this->out = this->out + "ERROR22 in symbol  " + str + '\n';
-            return false;
+    }else{                                 /// token contains errors or not seperate
+        if(last != nullptr && last->is_accept()){       /// trem with accept
+            string type = last->get_name();
+            if(type == "Keyword" || type == "Punctuation"){
+                this->out = this->out + str.substr(0,pos) + '\n';
+            }else{
+                this->out = this->out + type + '\n';
+            }
+            if(type == "id")
+            {
+                this->symbol_table.push_back(str.substr(0,pos));
+            }
+            string reminder = str.substr(pos+1);
+            return run(reminder, start);
+        }else if(last == nullptr && ( temp->get_id() == -1 || temp->get_name() == "Phi" ) && error > -1 ){  /// trem with error
+            this->out = this->out + "ERROR in symbol  " + str[error] + '\n';
+            string reminder = str.substr(error+1);
+            return run(reminder, start);
+        }else{      /// mya be not reached
+            this->out = this->out + "ERROR REJECTED  " + str + '\n';
         }
     }
-
 }
