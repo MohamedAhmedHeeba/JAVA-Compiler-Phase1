@@ -74,15 +74,9 @@ bool Matcher::run(string str, D_state* start)
             if(i+1 < str.size()){
                 if(str[i+1] != '='){
                     error = i;
-                    cout << "2222222222222222222222222222222222\n";
                     break;
                 }
-            }else if(i == str.size()-1){
-                //error = i;
-                cout << "heeeeeeebaaaaaaaaaaaaaaaaaaaaaaaaaaa\n";
-                //break;
             }
-
         }
         /// get next state for input str[i]
         temp =temp->get_next(str[i]);

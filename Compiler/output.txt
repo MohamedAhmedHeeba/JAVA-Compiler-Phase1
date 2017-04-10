@@ -15,7 +15,11 @@ relop
 ERROR in symbol  !
 id
 id
-ERROR REJECTED  !
+ERROR in symbol  !
+ERROR in symbol  !
+ERROR in symbol  !
+ERROR in symbol  !
+ERROR in symbol  !
 int
 id
 (
