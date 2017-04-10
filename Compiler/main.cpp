@@ -10,6 +10,59 @@
 #include "Matcher.h"
 
 using namespace std;
+void  pri(D_state *w)
+{
+    std::ofstream out("Transition.txt");
+    std::queue < D_state * > current;
+    current.push(w);
+    std::set < D_state * > vis;
+    vis.insert(w);
+    std::set < char > alpha;
+
+    while(!current.empty())
+    {
+        D_state* x = current.front();       current.pop();
+        for(map <char, D_state* > :: iterator it = (x -> next).begin(); it != (x -> next).end(); ++it)
+        {
+            alpha.insert(it -> first);
+                if(vis.find(it -> second) == vis.end())
+                {
+                    vis.insert(it -> second);
+                    current.push(it -> second);
+                }
+
+        }
+    }
+    out << "|";
+    for(int i = 0;i < 312;++i)
+        out << "=";
+    out << "|\n";
+    out << "|Node| ";
+    for(auto y = alpha.begin();y != alpha.end();++y)
+        out << *y << " | ";
+    out << "\n";
+
+    out << "|";
+    for(int i = 0;i < 312;++i)
+        out << "=";
+    out << "|\n";
+    for(auto x = vis.begin();x != vis.end();++x)
+    {
+        out << "| ";
+        out << ((*x) -> get_id()) << "   | ";
+        for(auto y = alpha.begin();y != alpha.end();++y)
+        {
+           out << (*x) -> next[*y] -> get_id();
+            out << " | ";
+        }
+        out << "\n";
+    }
+    out << "|";
+    for(int i = 0;i < 312;++i)
+        out << "=";
+    out << "|\n";
+}
+
 void print_DFA(D_state* startingNode)
 {
     int counter = 0;
@@ -69,8 +122,8 @@ int main()
     Min_DFA* mdfa= new Min_DFA();
     D_state* mi = mdfa -> DFA_min(DFA);
     cout << endl;
-    print_DFA(mi);
-
+    //print_DFA(mi);
+    pri(mi);
 
     /** HEEBA ADD THIS CODE */
 

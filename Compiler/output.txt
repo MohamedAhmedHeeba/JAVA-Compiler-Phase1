@@ -1,0 +1,59 @@
+id
+ERROR in symbol  ~
+relop
+id
+;
+id
+assign
+num
+;
+id
+assign
+num
+id
+;
+id
+assign
+num
+;
+id
+ERROR in symbol  #
+ERROR in symbol  @
+ERROR in symbol  ~
+id
+;
+id
+assign
+id
+;
+id
+ERROR in symbol  ?
+id
+;
+id
+ERROR in symbol  ~
+id
+;
+id
+ERROR in symbol  ?
+assign
+;
+id
+ERROR in symbol  ~
+ERROR in symbol  #
+;
+ERROR in symbol  ?
+id
+;
+ERROR in symbol  ~
+id
+;
+ERROR in symbol  ~
+ERROR in symbol  #
+id
+;
+ERROR in symbol  ~
+assign
+id
+addop
+;
