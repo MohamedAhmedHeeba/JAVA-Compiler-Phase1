@@ -1,14 +1,12 @@
-aaa~>=bbb;
-pass=100.5;
-pass=100.5E;
-pass=100.5E10;
-aaa#@~bbb;
-aaa=bbb;
-aaa?bbb;
-aaa~bbb;
-aaa?=;
-aaa~#;
-?aaa;
-~aaa;
-~#aaa;
-~=aaa+;
+int main() {
+int sum=0, even = 0, odd =0.0, i=0;
+while(i<size){
+if(i%2!=0){
+odd++;
+}else{
+even+=1;
+}
+total = total+1;
+}
+return0;
+}

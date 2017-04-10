@@ -97,13 +97,13 @@ bool Matcher::run(string str, D_state* start)
         if(last != nullptr && last->is_accept()){       /// trem with accept
             string type = last->get_name();
             if(type == "Keyword" || type == "Punctuation"){
-                this->out = this->out + str.substr(0,pos) + '\n';
+                this->out = this->out + str.substr(0,pos+1) + '\n';
             }else{
                 this->out = this->out + type + '\n';
             }
             if(type == "id")
             {
-                this->symbol_table.push_back(str.substr(0,pos));
+                this->symbol_table.push_back(str.substr(0,pos+1));
             }
             string reminder = str.substr(pos+1);
             return run(reminder, start);
